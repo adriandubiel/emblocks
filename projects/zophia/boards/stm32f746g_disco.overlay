@@ -1,0 +1,26 @@
+/ {
+
+    light {
+	compatible = "gpio-leds";
+	bl_light: lcd_bl_ctrl {
+	    gpios = <&gpiok 3 GPIO_ACTIVE_HIGH>;
+	    label = "LCD BL CTRL";
+	};
+    };
+
+    pwmleds {
+	compatible = "pwm-leds";
+	status = "okay";
+	green_pwm_led: my_green_pwm_led {
+	    pwms = <&pwm3 1 0 PWM_POLARITY_NORMAL>;
+	    status = "okay";
+	    label = "PWM GRN LED";
+	};
+    };
+
+    aliases {
+	bl0 = &bl_light;
+	pwmled0 = &green_pwm_led;
+    };
+
+};

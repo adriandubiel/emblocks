@@ -4,26 +4,25 @@
 
 using emblocks::components::pwm::tl::PWM;
 
-constexpr auto printTuple = [](auto&&... args) {
-    const size_t sz = sizeof ...(args);
+constexpr auto printTuple = [](auto &&...args)
+{
+    const size_t sz = sizeof...(args);
     size_t k = 0;
-    
-    ((std::cout << std::forward<decltype(args)>(args) << (  ++k!=sz?", ":"\n") ), ... );    
+
+    ((std::cout << std::forward<decltype(args)>(args) << (++k != sz ? ", " : "\n")), ...);
 };
 
 int main()
-{    
-    PWM<PWM_HW, 0> pwm0;
-    PWM<PWM_HW, 1> pwm1;
-    PWM<PWM_SW> pwm;
+{
+    PWM<PWM_HW> hwPwm0;
+    PWM<PWM_HW, 1> hwPwm1;
+    PWM<PWM_SW, 2> swPwm(400, 50);
 
-    pwm0.set(1000, 50);
-    pwm.set(400, 75);
+    hwPwm0.set(1000, 50);
 
-    std::cout << "PWM id: " << pwm0.pwmId() << std::endl;
-    std::cout << "PWM id: " << pwm1.pwmId() << std::endl;
+    std::apply(printTuple, hwPwm0());
+    std::apply(printTuple, hwPwm1());
+    std::apply(printTuple, swPwm());
 
-    std::apply(printTuple, pwm0());
-      
     return 0;
 }

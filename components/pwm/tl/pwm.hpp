@@ -11,7 +11,7 @@ namespace emblocks::components::pwm::tl
 	public:
 		PWM() : frequency(0), duty(0), _pwmId(PwmId) {}
 
-		PWM(int freq, int duty) : frequency(freq), duty(duty) {}
+		PWM(int freq, int duty) : frequency(freq), duty(duty), _pwmId(PwmId) {}
 
 		void init()
 		{
@@ -38,11 +38,6 @@ namespace emblocks::components::pwm::tl
 			this->frequency = freq;
 			this->duty = duty;
 			static_cast<Controller *>(this)->set();
-		}
-
-		size_t pwmId()
-		{
-			return _pwmId;
 		}
 
 		auto operator()() const

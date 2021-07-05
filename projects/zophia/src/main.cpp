@@ -8,10 +8,7 @@
 #include <device.h>
 #include <devicetree.h>
 #include <drivers/gpio.h>
-
 #include <drivers/pwm.h>
-
-#include "PWM.hpp"
 
 #define PWM_LED0_NODE	DT_ALIAS(pwmled0)
 
@@ -67,9 +64,6 @@ void main(void)
 	const struct device *dev, *bl0_dev;
 	bool led_is_on = true;
 	int ret;
-
-	emblocks::zmodules::pwm::PWM pwm1;
-	pwm1.test();
 
 	dev = device_get_binding(LED0);
 	if (dev == NULL) {

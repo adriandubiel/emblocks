@@ -5,30 +5,25 @@
 
 using emblocks::components::pwm::tl::PWM;
 
-class PWM_SW : public PWM<PWM_SW>
-{
+class PWM_SW : public PWM<PWM_SW> {
 public:
-    void init() {
-        // sw inplementation        
-    }
+  void init() {
+    // sw inplementation
+  }
 
-    void deinit() {
-        
-    }
+  void deinit() {}
 
-    void run() {
-        // that one might need some threading
-    }
+  void run() {
+    // that one might need some threading
+  }
 
-    void stop() {
-        
-    }
+  void stop() {}
 
-    void set() {
-        // freq & duty set in a base class, make use of:
-        // this->frequency
-        // this->duty
-    }
+  void set() {
+    // freq & duty set in a base class, make use of:
+    // this->frequency
+    // this->duty
+  }
 };
 
 #endif /* _SRC_CONTROLLER_PWM_SW_HPP_ */

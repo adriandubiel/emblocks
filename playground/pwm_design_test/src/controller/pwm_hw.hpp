@@ -5,30 +5,23 @@
 
 using emblocks::components::pwm::tl::PWM;
 
-class PWM_HW : public PWM<PWM_HW>
-{
+class PWM_HW : public PWM<PWM_HW> {
 public:
-    void init() {
-        // implementation, use of HAL driver, etc.
-    }
+  void init() {
+    // implementation, use of HAL driver, etc.
+  }
 
-    void deinit() {
-        
-    }
+  void deinit() {}
 
-    void run() {
-        
-    }
+  void run() {}
 
-    void stop() {
-        
-    }
+  void stop() {}
 
-    void set() {
-        // freq & duty set in a base class, make use of:
-        // this->frequency
-        // this->duty
-    }
+  void set() {
+    // freq & duty set in a base class, make use of:
+    // this->frequency
+    // this->duty
+  }
 };
 
 #endif /* _SRC_CONTROLLER_PWM_HW_HPP_ */

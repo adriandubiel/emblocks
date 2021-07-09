@@ -3,59 +3,37 @@
 
 #include <tuple>
 
-namespace emblocks::components::pwm::tl
-{
-	template <typename Controller, size_t PwmId = 0U>
-	class PWM
-	{
-	public:
-		PWM() : frequency(0), duty(0), _pwmId(PwmId) {}
+namespace emblocks::components::pwm::tl {
+template <typename Controller, size_t PwmId = 0U> class PWM {
+public:
+  PWM() : frequency(0), duty(0), _pwmId(PwmId) {}
 
-		PWM(int freq, int duty) : frequency(freq), duty(duty), _pwmId(PwmId) {}
+  PWM(int freq, int duty) : frequency(freq), duty(duty), _pwmId(PwmId) {}
 
-		void init()
-		{
-			static_cast<Controller *>(this)->init();
-		}
+  void init() { static_cast<Controller *>(this)->init(); }
 
-		void deinit()
-		{
-			static_cast<Controller *>(this)->deinit();
-		}
+  void deinit() { static_cast<Controller *>(this)->deinit(); }
 
-		void run()
-		{
-			static_cast<Controller *>(this)->run();
-		}
+  void run() { static_cast<Controller *>(this)->run(); }
 
-		void stop()
-		{
-			static_cast<Controller *>(this)->stop();
-		}
+  void stop() { static_cast<Controller *>(this)->stop(); }
 
-		void set(int freq, int duty)
-		{
-			this->frequency = freq;
-			this->duty = duty;
-			static_cast<Controller *>(this)->set();
-		}
+  void set(int freq, int duty) {
+    this->frequency = freq;
+    this->duty = duty;
+    static_cast<Controller *>(this)->set();
+  }
 
-		auto operator()() const
-		{
-			return std::tuple(frequency, duty, _pwmId);
-		}
+  auto operator()() const { return std::tuple(frequency, duty, _pwmId); }
 
-		auto operator()()
-		{
-			return std::tuple(frequency, duty, _pwmId);
-		}
+  auto operator()() { return std::tuple(frequency, duty, _pwmId); }
 
-	protected:
-		int frequency;
-		int duty;
-		size_t _pwmId;
-	};
+protected:
+  int frequency;
+  int duty;
+  size_t _pwmId;
+};
 
-}
+} // namespace emblocks::components::pwm::tl
 
 #endif /* _COMPONENTS_PWM_TL_PWM_HPP_ */
